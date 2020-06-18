@@ -13,6 +13,10 @@ repository = "https://github.com/Lucretiel/stowaway"
 [dependencies]
 rustversion = "1.0.2"
 
+[features]
+default = ["has_atomics"]
+has_atomics = []
+
 [badges]
 travis-ci = { repository = "Lucretiel/joinery" }
 maintenance = { status = "actively-developed" }

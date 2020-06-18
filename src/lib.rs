@@ -143,6 +143,7 @@ extern crate alloc;
 
 use alloc::boxed::Box;
 use alloc::rc::{Rc, Weak as RcWeak};
+#[cfg(feature = "has_atomics")]
 use alloc::sync::{Arc, Weak as ArcWeak};
 use alloc::vec::Vec;
 use core::fmt;
@@ -220,9 +221,15 @@ stowable_ptr! {
     Rc<T> Option<Rc<T>>
     RcWeak<T> Option<RcWeak<T>>
     NonNull<T> Option<NonNull<T>>
+}
+
+#[cfg(feature = "has_atomics")]
+stowable_ptr! {
+    impl<T> for
     Arc<T> Option<Arc<T>>
     ArcWeak<T> Option<ArcWeak<T>>
 }
+
 
 /// Implement stowable for array types. This is sounds because all types have
 /// a size that is a multiple of their alignment, so there's no type that is
